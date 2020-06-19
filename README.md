@@ -1,5 +1,18 @@
 # Golang
 
+- [Golang](#golang)
+  - [Installation and Setup](#installation-and-setup)
+    - [Install golang](#install-golang)
+    - [IDE setup](#ide-setup)
+  - [Create main func](#create-main-func)
+  - [Declare variables and functions](#declare-variables-and-functions)
+  - [array and slices](#array-and-slices)
+  - [Go receiver and function argument](#go-receiver-and-function-argument)
+  - [go data type](#go-data-type)
+    - [type convertion](#type-convertion)
+    - [struct](#struct)
+    - [Pointers](#pointers)
+
 ## Installation and Setup
 
 ### Install golang
