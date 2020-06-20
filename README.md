@@ -143,6 +143,14 @@ struct is a value type in go, it can be used to define structured variables with
         contact   contactInfo
     }
 
+a new variable can be created by
+
+    newperson := person{
+        "wang",
+        "ba",
+        "110",
+    }
+
 ### Pointers
 
 In go lang, there are 2 types of data, which are `value type` and `reference type`.  
@@ -246,3 +254,7 @@ golang has many packages to support different functions, it's highly recommended
 [golang]: https://golang.org/
 [vscode link]: https://code.visualstudio.com
 [go package]: https://golang.org/pkg/
+
+## project
+
+In project, I wrote a web crawler by Go lang.
