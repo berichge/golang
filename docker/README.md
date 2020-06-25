@@ -61,6 +61,8 @@ Command which are executable are based on the file system of the container.
     docker run berichge/elasticsearch:latest
     ```
 
+- docker attach: attache terminal to a running container
+
 ## Build customzied images
 
 Dockerfile -> Docker Client -> Docker Server -> Usable image
