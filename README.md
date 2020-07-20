@@ -12,6 +12,18 @@
     - [type convertion](#type-convertion)
     - [struct](#struct)
     - [Pointers](#pointers)
+    - [map](#map)
+    - [Interface](#interface)
+    - [routine](#routine)
+    - [Channel](#channel)
+  - [Iterate func](#iterate-func)
+  - [Packages](#packages)
+  - [Go work env](#go-work-env)
+    - [GOPATH](#gopath)
+      - [Packages](#packages-1)
+    - [Go module](#go-module)
+      - [init a go module](#init-a-go-module)
+      - [list current dependency](#list-current-dependency)
 
 ## Installation and Setup
 
@@ -255,6 +267,44 @@ golang has many packages to support different functions, it's highly recommended
 [vscode link]: https://code.visualstudio.com
 [go package]: https://golang.org/pkg/
 
-## project
+## Go work env
 
-In project, I wrote a web crawler by Go lang.
+### GOPATH
+
+GOPATH is an env var points to location of your workspace, by default is `$HOME/go`.
+
+    GOPATH
+        |- bin  
+        |-pkg  
+        |-src  
+
+$GOPATH/bin is where go places binaries that go install compiles. We can add ` $GOPATH/bin/myapp` to PATH which makes us be able to run `myapp` directly.
+
+$GOPATH/pkg is where Go stores pre-compiled obj files. For compilation issue, you can try to delete it and go will rebuild it.
+
+$GOPATH/src is where our .go files be located
+
+#### Packages
+
+Go code is organized in Package, which represent all the files in a single directory. Packages are stored with all user-written Go source files, under $GOPATH/src directory.
+
+In Go code, we can use full path to import packages to current code.
+```import "github.com/A/B"```, therefore, the source code will be imported to `$GOPATH/src/github,com/A/B` with package name `B`.
+
+### Go module
+
+Go module is a new dependency management system - with version control. It compares to old dependency management GOPATH.
+
+A module is collection of Go pkgs stored in a file tree with go.mod at it's root.
+
+Here are some steps illuminating `go mod`
+
+#### init a go module
+
+Use `go mod init example.com/hello` to init a go module. The go command running in same path will know exactly the import path of current location instead of makes up a fake one.
+
+#### list current dependency
+
+`go list -m all` can show all dependency of current project.
+`go get {package}` can be used to update version of package.
+'go list 
