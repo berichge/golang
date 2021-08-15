@@ -1,1 +1,83 @@
+exaample1: 
+
+
+Go waitGroup
+package main
+
+import (
+    "fmt"
+    "time"
+    "sync"
+)
+	
+type Product struct {
+    id	int64
+    isFreeShipping bool
+    isWishList     bool
+}
+
+
+func main() {
+	// function input in PDP call
+	productList := []*Product {
+		&Product{1,false,false},
+		&Product{2,false,false},
+		&Product{3,false,false},
+		&Product{4,false,false},
+		&Product{5,false,false},
+	}
+	
+	fetchExtraShopData(productList)
+}
+
+
+func fetchExtraShopData(plist []*Product) {
+
+	var wg sync.WaitGroup
+	start := time.Now().Unix()  
+	fetchJobs := []func(plist *[]*Product, wg *sync.WaitGroup) {
+		UpdateWishListLabel, UpdateFreeShippingLabel,	
+	}
+	
+	for _, execWork := range fetchJobs {
+		wg.Add(1)
+		go execWork(&plist, &wg)
+	}
+	
+	wg.Wait()
+	end := time.Now().Unix() 
+	totalLatency := end - start
+	fmt.Println(totalLatency)
+	for _, p := range plist {
+		fmt.Println("pid:, freeship:, wishlist:", p.id, p.isFreeShipping, p.isWishList)
+	}
+}
+
+func UpdateWishListLabel(plist *[]*Product, wg *sync.WaitGroup) {
+	defer wg.Done()
+	// mock a remote call
+	time.Sleep(1 * time.Second)
+	
+	
+	for idx, p := range *plist {
+		if idx > 2 {
+			p.isWishList = true
+		}
+	}
+}
+
+
+func UpdateFreeShippingLabel(plist *[]*Product, wg *sync.WaitGroup) {
+	defer wg.Done()
+	// mock a remote call
+	time.Sleep(2 * time.Second)
+	
+	for idx, p := range *plist {
+		if idx < 4 {
+			p.isFreeShipping = true
+		}
+
+	}
+}
+
 
